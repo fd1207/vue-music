@@ -1,0 +1,40 @@
+{
+    "code": 0,
+    "data": {
+        "slider": [
+            {
+                "linkUrl": "https://y.qq.com/m/act/10th_anniversary/index.html?mbref=179.20117",
+                "picUrl": "http://y.gtimg.cn/music/photo_new/T003R720x288M000000iFk111XLwTq.jpg",
+                "id": 13429
+            },
+            {
+                "linkUrl": "https://y.qq.com/m/digitalbum/gold/index.html?_video=true&id=3766873&g_f=shoujijiaodian",
+                "picUrl": "http://y.gtimg.cn/music/photo_new/T003R720x288M000000B8wHB1Si6Iz.jpg",
+                "id": 13398
+            },
+            {
+                "linkUrl": "https://y.qq.com/m/act/voiceofdreams2/v3/index.html?ADTAG=jiaodiantu",
+                "picUrl": "http://y.gtimg.cn/music/photo_new/T003R720x288M000002mHeKg3VEVvq.jpg",
+                "id": 13382
+            },
+            {
+                "linkUrl": "https://y.qq.com/msa/270/0_4619.html",
+                "picUrl": "http://y.gtimg.cn/music/photo_new/T003R720x288M000003aVdSK0mosyN.jpg",
+                "id": 13414
+            },
+            {
+                "linkUrl": "http://y.qq.com/m/act/sfhd/112.html?ADTAG=banner",
+                "picUrl": "http://y.gtimg.cn/music/photo_new/T003R720x288M000002r04yZ1psc63.jpg",
+                "id": 13417
+            }
+        ],
+        "radioList": [
+            {
+                "picUrl": "http://y.gtimg.cn/music/photo/radio/track_radio_199_13_1.jpg",
+                "Ftitle": "热歌",
+                "radioid": 199
+            }
+        ],
+        "songList": []
+    }
+}
