@@ -25,7 +25,11 @@
   	display: flex;
     height: 44px;
     line-height: 44px;
-
+    position: fixed;
+    top: 44px;
+		width: 100%;
+		z-index: 5;
+		background-color: #272727
   }
     
   .tab-item{

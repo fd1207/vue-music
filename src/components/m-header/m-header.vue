@@ -16,11 +16,13 @@
   
 
 	.m-header{
-	  position: relative;
+	  position: fixed;
+	  top: 0;
 	  height: 44px;
 	  text-align: center;
 	  font-size: 15px;
 	  color: #FFCD32;
+	  width: 100%;z-index: 5;background-color: #272727
 	}
     
     .icon{
