@@ -1,12 +1,14 @@
 <template>
 	<div class="singer">
-		<list-view :data="singer"></list-view>
+		<list-view @select="selectSinger" :data="singer"></list-view>
+		<router-view></router-view>
 	</div>
 </template>
 
 <script>
 	import Singer from '../../common/js/singer'
 	import ListView from '../../base/listview/listview'
+	import {mapMutations} from 'vuex'
 	const HOT_NAME = '热门'
 	const HOT_SINGER_LEN = 10
 	export default{
@@ -19,6 +21,12 @@
 			this._getSinger()
 		},
 		methods:{
+			selectSinger(singer){
+				this.$router.push({
+					path:`/singer/${singer.id}`
+				})
+				this.setSinger(singer)
+			},
 			_getSinger:function(){
 				this.$ajax.get("/static/json/singer.json").then((res)=>{
 					
@@ -67,7 +75,10 @@
 					return a.title.charCodeAt(0) - b.title.charCodeAt(0)
 				})
 				return hot.concat(ret)
-			}
+			},
+			...mapMutations({
+				setSinger:'SET_SINGER'
+			})
 		},
 		components:{
 			ListView
@@ -87,9 +98,10 @@
 		width: 60px;height: 60px;border-radius: 50%;
 	}
 	.name{
-		text-overflow: ellipsis;overflow: hidden;white-space: nowrap;padding-left: 10px;justify-content: center;flex: 1;
+		text-overflow: ellipsis;overflow: hidden;white-space: nowrap;padding-left: 10px;justify-content: center;flex: 1;font-size: 14px;
 	}
 	.list-group-title{
-		color: #FFFFFF;
+		color: #FFFFFF;height: 40px;line-height: 40px;background-color:#313131;padding-left: 20px;font-size: 14px;margin-bottom: 10px;
 	}
+	
 </style>

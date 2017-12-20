@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 import VueLazyload from 'vue-lazyload'
+import store from './store'
 Vue.prototype.$ajax = axios
 Vue.config.productionTip = false
 Vue.use(VueLazyload, {
@@ -16,5 +17,6 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
+  store,
   components: { App }
 })
