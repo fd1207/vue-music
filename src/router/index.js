@@ -24,17 +24,17 @@ export default new Router({
     },
     {
       path: '/search',
-      component: Search,
+      component: Search
+    },
+    {
+      path: '/singer',
+      component: Singer,
       children:[
       	{
       		path:":id",
       		component:SingerDetail
       	}
       ]
-    },
-    {
-      path: '/singer',
-      component: Singer
     }
   ]
 })

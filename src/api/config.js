@@ -1,5 +1,5 @@
 export const commonParams = {
-	g_tk:597667330,
+	g_tk:1477662275,
 	inCharset:'utf-8',
 	outCharset:'utf-8',
 	notice:0,
