@@ -1,5 +1,5 @@
 <template>
-	<scroll class="listview" :data="data" ref="listview" :listenScroll="listenScroll" @scroll="scroll">
+	<scroll class="listview" :data="data" ref="listview" :listenScroll="listenScroll" @scroll="scroll" :style="{height:listviewH}">
 		<ul>
 			<li v-for="group in data" class="list-group" ref="listGroup">
 				<h2 class="list-group-title">{{group.title}}</h2>
@@ -32,7 +32,8 @@
 		data(){
 			return {
 				scrollY:-1,
-				currentIndex:0
+				currentIndex:0,
+				listviewH:0
 			}
 			
 		},
@@ -49,6 +50,7 @@
 				})
 			}
 		},
+		
 		methods:{
 			onShortcutTouchStart(e){
 				let anchorIndex = getData(e.target,'index')
@@ -70,10 +72,16 @@
 			},
 			_scrollTo(index){
 				this.$refs.listview.scrollToElement(this.$refs.listGroup[index],0)
+
 			},
 			selectItem(item){
 				this.$emit('select',item)
 			}
+		},
+		mounted(){
+			let h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+			this.listviewH = `${h-88}px`
+			console.log(this.$refs.listview)
 		},
 		components:{
 			Scroll	
@@ -83,7 +91,7 @@
 
 <style scoped="scoped">
 	.listview{
-		position: relative;width: 100%;height: 100%;overflow: hidden;
+		position: relative;width: 100%;overflow: hidden;
 	}
 	.list-shortcut{
 		position: fixed;right: 10px;z-index: 6;top:50%;transform: translateY(-50%);

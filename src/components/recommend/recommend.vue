@@ -1,8 +1,8 @@
 <template>
 	<div class="recommend" ref="recommend">
-		<scroll ref="scroll" class="recommend-content" :data="disclist">
+		<div class="recommend-content" :data="disclist">
 			<div>
-				<div v-if="recommends.length" class="slider-wrpper">
+				<div v-if="recommends.length" class="slider-wrpper" ref="sliderWrpper">
 					<slider>
 						<div v-for="item in recommends">
 							<a :href="item.linkUrl">
@@ -11,26 +11,32 @@
 						</div>
 					</slider>
 				</div>
-				<div class="recommend-list">
+				
+				<div class="recommend-list" ref="recommendList">
 					<h1 class="list-title">热门歌单推荐</h1>
-					<ul>
-						<li v-for="item in disclist" class="item">
-							<div class="icon">
-								<img v-lazy="item.imgurl" width="60" height="60" />
-							</div>
-							<div class="text">
-								<h2 class="name" v-html="item.creator.name"></h2>
-								<p class="desc" v-html="item.dissname"></p>
-							</div>
-						</li>
-					</ul>
+					<scroll  ref="scroll" class="recommends">
+						<ul>
+							<li v-for="item in disclist" class="item">
+								<div class="icon">
+									<img v-lazy="item.imgurl" width="60" height="60" />
+								</div>
+								<div class="text">
+									<h2 class="name" v-html="item.creator.name"></h2>
+									<p class="desc" v-html="item.dissname"></p>
+								</div>
+							</li>
+						</ul>
+
+					</scroll>
 				</div>
+				
+				
 			</div>
 			
 			<div class="loading-container" v-show="!disclist.length">
 				<loading></loading>
 			</div>
-		</scroll>
+		</div>
 	</div>
 </template>
 
@@ -39,8 +45,9 @@
 	import Slider from '../../base/slider/slider'
 	import Scroll from '../../base/scroll/scroll'
 	import Loading from '../../base/loading/loading'
-	//import {getRecommend} from 'api/recommend'
-	//import {ERR_OK} from 'api/config'
+	import {getRecommend} from '../../api/recommend'
+	import {getDiscList} from '../../api/recommend'
+	import {ERR_OK} from '../../api/config'
 	
 	export default{
 		data(){
@@ -51,23 +58,32 @@
 		},
 		created(){
 
-			this.load()
 			this.getDiscList()
+			this._getRecommend()
 		},
-
+		mounted(){
+			
+			let h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+			//let offsetTop = this.$refs.scroll.$el.offsetTop
+		
+			console.log(this.$refs.recommendList)
+		},
 		methods:{
 
-			load:function(){
-				
-				this.$ajax.get("/static/json/slider.json").then((res)=>{
-		          this.recommends = res.data.data.slider;
-		          //console.log(this.recommends)
-		      })
-			},
+			
 			getDiscList:function(){
 				this.$ajax.get("/static/json/music.json").then((res)=>{
-					console.log(res.data.data.list)
 					this.disclist = res.data.data.list
+				})
+			},
+			_getDiscList:function(){
+				getDiscList().then((res)=>{
+					//this.disclist = res.data.list
+				})
+			},
+			_getRecommend:function(){
+				getRecommend().then((res)=>{
+					this.recommends = res.data.slider;
 				})
 			},
 			loadImage(){
@@ -78,6 +94,7 @@
 				
 			},
 		},
+		
 		components:{
 			Slider,
 			Scroll,
@@ -108,5 +125,8 @@
 	}
 	.slider-wrpper{
 		margin-top: 88px;
+	}
+	.recommends{
+		height: 100%;
 	}
 </style>

@@ -9,6 +9,7 @@
 	import Singer from '../../common/js/singer'
 	import ListView from '../../base/listview/listview'
 	import {mapMutations} from 'vuex'
+	import {getSinger} from '../../api/singer'
 	const HOT_NAME = '热门'
 	const HOT_SINGER_LEN = 10
 	export default{
@@ -27,11 +28,14 @@
 				})
 				this.setSinger(singer)
 			},
+//			_getSinger:function(){
+//				this.$ajax.get("/static/json/singer.json").then((res)=>{
+//
+//				})
+//			},
 			_getSinger:function(){
-				this.$ajax.get("/static/json/singer.json").then((res)=>{
-					
-					this.singer = (this._normalizeSinger(res.data.data.list))
-				
+				getSinger().then((res)=>{
+					this.singer = (this._normalizeSinger(res.data.list))
 				})
 			},
 			_normalizeSinger(list){
